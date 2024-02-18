@@ -1,0 +1,14 @@
+<h1>Departments</h1>
+<% @departments.each do |department| %>
+  <section class= "department-<%= department.name %>">
+    Department Name: <%= department.name %><br>
+    Floor: <%= department.floor %><br>
+    
+    Department's Employees:
+    
+    <% department.employees.each do |employee| %>
+      <li><%= employee.name %></li>
+    <% end %>
+
+  </section>
+<% end %>
