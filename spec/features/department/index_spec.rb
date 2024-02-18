@@ -17,8 +17,8 @@ RSpec.describe 'Department Index Page', type: :feature do
     # As a user,
     # When I visit the Department index page,
     visit "/departments"
-    save_and_open_page
-    within ".department-#{@department_1.name}" do
+
+    within ".department-#{@department_1.id}" do
       # I see each department's name and floor
       expect(page).to have_content("Department Name: HR")
       expect(page).to have_content("Floor: 2")
@@ -27,14 +27,14 @@ RSpec.describe 'Department Index Page', type: :feature do
       expect(page).to have_content("Julianne Drak")
     end
     
-    within ".department-#{@department_2.name}" do
-    # I see each department's name and floor
-    expect(page).to have_content("Department Name: IT")
-    expect(page).to have_content("Floor: 1")
-    expect(page).to have_content("Department's Employees:")
-    # And underneath each department, I can see the names of all of its employees
-    expect(page).to have_content("Laura Vega")
-    expect(page).to have_content("Libby Row")
+    within ".department-#{@department_2.id}" do
+      # I see each department's name and floor
+      expect(page).to have_content("Department Name: IT")
+      expect(page).to have_content("Floor: 1")
+      expect(page).to have_content("Department's Employees:")
+      # And underneath each department, I can see the names of all of its employees
+      expect(page).to have_content("Laura Vega")
+      expect(page).to have_content("Libby Row")
     end
   end
  end

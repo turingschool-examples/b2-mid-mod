@@ -1,9 +1,23 @@
 <h1>Employee</h1>
 <h2>Name: <%= @employee.name %></h2>
-<h3>Tickets Assigned:</h3>
-<% @employee.org_tickets.pluck(:subject).each do |ticket|%>
-  <li><%= ticket %></li> 
+<% unless @no_tickets == true %>
+  <section class = "tick_assigned">
+    <h3>Tickets Assigned:</h3>
+    <% @employee.org_tickets.pluck(:subject).each do |ticket|%>
+      <li><%= ticket %></li> 
+    <% end %>
+    <div id="oldest_ticket">
+      Oldest Ticket: <%= @employee.org_tickets.pluck(:subject).first %>
+    </div>
+  </section>
 <% end %>
-<div id="oldest_ticket">
-  Oldest Ticket: <%= @employee.org_tickets.pluck(:subject).first %>
-</div>
+
+<% unless @no_tickets == false %>
+  Add a ticket to this employee
+  <%= form_with url: "/employees/tickets/#{@employee.id}", remote: true, method: :post do |f| %>
+    <%= f.label :ticket_id %>
+    <%= f.number_field :ticket_id %><br>
+
+    <%= f.submit "Submit" %>
+  <% end %>
+<% end %>
