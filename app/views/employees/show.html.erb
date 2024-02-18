@@ -1,0 +1,9 @@
+<h1>Employee</h1>
+<h2>Name: <%= @employee.name %></h2>
+<h3>Tickets Assigned:</h3>
+<% @employee.org_tickets.pluck(:subject).each do |ticket|%>
+  <li><%= ticket %></li> 
+<% end %>
+<div id="oldest_ticket">
+  Oldest Ticket: <%= @employee.org_tickets.pluck(:subject).first %>
+</div>
